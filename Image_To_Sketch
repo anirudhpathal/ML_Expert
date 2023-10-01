@@ -1,0 +1,20 @@
+# Importing cv2 library
+import cv2
+
+# reading image from given path
+image = cv2.imread("C:/Users/Lenovo/Pictures/Camera Roll/arish.jpg")
+
+# converting to grayscale image
+gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+# converting to inverted/negative image
+inverted_image = 255 - gray_image
+
+# Sketched Image 
+blurred = cv2.GaussianBlur(inverted_image, (21, 21), 0)
+inverted_blurred = 255 - blurred
+pencil_sketch = cv2.divide(gray_image, inverted_blurred, scale=256.0)
+
+# Displaying Image
+cv2.imwrite("hero-sketch.png", pencil_sketch)
+cv2.imshow("Image",pencil_sketch)
